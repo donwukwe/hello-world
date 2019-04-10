@@ -4,6 +4,10 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: echo $VERSION
-      #- run: docker build -f Dockerfile -t david/hello-world:$CIRCLE_BRANCH .
+      - run: docker build -f Dockerfile -t david/hello-world:$CIRCLE_TAG .
       #- run: docker push david/hello-world:$CIRCLE_BRANCH
+    filters:
+      branches:
+        - master
+      tags:
+        only: v/^\d+\.\d+\.\d+$/
